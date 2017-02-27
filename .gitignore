@@ -1,3 +1,4 @@
 *.sublime*
+dist/
 node_modules/
 npm_debug.log
