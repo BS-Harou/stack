@@ -6,7 +6,7 @@ var SaveAssetsJson = require('assets-webpack-plugin');
 config.bail = true;
 config.debug = false;
 config.profile = false;
-config.devtool = '#source-map';
+config.devtool = 'hidden-source-map';
 
 config.output.filename: 'bundle.[hash].min.js';
 

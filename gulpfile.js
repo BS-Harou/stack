@@ -27,7 +27,7 @@ gulp.task('webpack', ['bootstrap'], function(done) {
 	});
 });
 
-gulp.task('dev', ['bootstrap'], function(done) {
+gulp.task('watch', ['bootstrap'], function(done) {
 	// Start a webpack-dev-server
 	var compiler = webpack(webpackConfig);
 

@@ -18,10 +18,11 @@ config.devServer = {
 	stats: {
 		colors: true
 	},
-	publicPath: config.output.publicPath
+	publicPath: config.output.publicPath,
+	watchContentBase: true
 };
 
-config.devtool = '#inline-source-map';
+config.devtool = 'cheap-module-source-map';
 
 config.output.pathinfo = true;
 
