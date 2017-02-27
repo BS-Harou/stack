@@ -4,6 +4,8 @@ var del = require('del');
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var webpackConfig = require('./webpack.config.js');
+var devServerEnhancer = require('./webpack.enhancer.devserver.js');
+var watchEnhancer = require('./webpack.enhancer.watch.js');
 
 gulp.task('default', ['webpack']);
 
@@ -27,9 +29,24 @@ gulp.task('webpack', ['bootstrap'], function(done) {
 	});
 });
 
+gulp.task('devserver', ['bootstrap'], function(done) {
+
+	var config = devServerEnhancer(webpackConfig);
+	var compiler = webpack(config);
+
+	new WebpackDevServer(compiler, webpackConfig.devServer)
+	.listen(8080, "localhost", function(err) {
+		if (err) throw new gutil.PluginError("webpack-dev-server", err);
+		gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/index.html");
+		done();
+	});
+});
+
 gulp.task('watch', ['bootstrap'], function(done) {
 	// Start a webpack-dev-server
-	var compiler = webpack(webpackConfig);
+	var config = devServerEnhancer(webpackConfig);
+	config = watchEnhancer(config);
+	var compiler = webpack(config);
 
 	new WebpackDevServer(compiler, webpackConfig.devServer)
 	.listen(8080, "localhost", function(err) {

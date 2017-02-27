@@ -13,3 +13,4 @@
 - dotenv lib
 - load larger libraries from cdn in production
 - I think there was some lodash thing to important only whats needed
+- Split/rector webpack config based on: NODE_ENV, run_dev_server, watch
