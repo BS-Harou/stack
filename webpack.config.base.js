@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 var NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -45,6 +46,10 @@ module.exports = {
 			__STAGING__: env.staging,
 			__PRODUCTION__: env.production,
 			__CURRENT_ENV__: '\'' + (NODE_ENV) + '\''
+		}),
+		new LodashModuleReplacementPlugin({
+			'collections': true,
+			'shorthands': true
 		})
 	],
 

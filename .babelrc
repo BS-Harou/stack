@@ -5,6 +5,7 @@
 		"react"
 	],
 	"plugins": [
-		"react-hot-loader/babel", "lodash"
+		"react-hot-loader/babel",
+		"lodash"
 	]
 }

@@ -16,13 +16,13 @@ gulp.task('clean', function() {
 gulp.task('bootstrap', function() {
 	gulp
 	.src('./node_modules/bootstrap/dist/css/bootstrap{.min,}.css{.map,}')
-	.pipe(gulp.dest('dist'))
+	.pipe(gulp.dest('dist'));
 });
 
 gulp.task('webpack', ['bootstrap'], function(done) {
 	webpack(webpackConfig, function(err, stats) {
-		if (err) throw new gutil.PluginError("webpack", err);
-		gutil.log("[webpack]", stats.toString({
+		if (err) throw new gutil.PluginError('webpack', err);
+		gutil.log('[webpack]', stats.toString({
 			colors: true
 		}));
 		done();
@@ -35,9 +35,9 @@ gulp.task('devserver', ['bootstrap'], function(done) {
 	var compiler = webpack(config);
 
 	new WebpackDevServer(compiler, webpackConfig.devServer)
-	.listen(8080, "localhost", function(err) {
-		if (err) throw new gutil.PluginError("webpack-dev-server", err);
-		gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/index.html");
+	.listen(8080, 'localhost', function(err) {
+		if (err) throw new gutil.PluginError('webpack-dev-server', err);
+		gutil.log('[webpack-dev-server]', 'http://localhost:8080/webpack-dev-server/index.html');
 		done();
 	});
 });
@@ -49,9 +49,9 @@ gulp.task('watch', ['bootstrap'], function(done) {
 	var compiler = webpack(config);
 
 	new WebpackDevServer(compiler, webpackConfig.devServer)
-	.listen(8080, "localhost", function(err) {
-		if (err) throw new gutil.PluginError("webpack-dev-server", err);
-		gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/index.html");
+	.listen(8080, 'localhost', function(err) {
+		if (err) throw new gutil.PluginError('webpack-dev-server', err);
+		gutil.log('[webpack-dev-server]', 'http://localhost:8080/webpack-dev-server/index.html');
 		done();
 	});
 });
