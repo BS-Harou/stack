@@ -1,18 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {AppContainer} from 'react-hot-loader';
-import Router from './router/router-container';
 import App from './app/app-container';
-import store from './model';
+import {store, history} from './model';
 import {Provider} from 'react-redux';
+
+import { ConnectedRouter } from 'react-router-redux';
 
 function renderApp() {
 	ReactDOM.render(
 		<AppContainer>
 			<Provider store={store}>
-				<Router>
+				<ConnectedRouter history={history}>
 					<App />
-				</Router>
+				</ConnectedRouter>
 			</Provider>
 		</AppContainer>,
 		document.getElementById('root')

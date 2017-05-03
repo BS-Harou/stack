@@ -1,5 +1,4 @@
-import { takeEvery } from 'redux-saga';
-// import { call, put } from 'redux-saga/effects'
+import { takeEvery,  /*, call, put*/ } from 'redux-saga/effects';
 
 function * fetchUser() {
 	console.log('Tamtadada');
@@ -7,7 +6,7 @@ function * fetchUser() {
 }
 
 function * mySaga() {
-	yield* takeEvery('SING', fetchUser);
+	yield takeEvery('SING', fetchUser);
 }
 
 export default mySaga;

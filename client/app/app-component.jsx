@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import { Link, Route } from 'react-router-dom';
+import {Link, Route} from 'react-router-dom';
 import appStyle from './app.css';
-
+import PropTypes from 'prop-types';
 
 //import Forms from '../forms/forms-containers';
 
@@ -18,7 +18,7 @@ class App extends Component {
 				<div>Val is: <span>{this.props.value}</span></div>
 				<div>{list}</div>
 				<input name="test" onChange={this.handleChange.bind(this)} ref="test" />
-	
+
 				<div>Menu:</div>
 				<ul className={appStyle.test}>
 					<li><Link to="/one">One</Link></li>
@@ -35,7 +35,7 @@ class App extends Component {
 					<Route path="/two" render={() => <div>Two</div>}/>
 					<Route path="/three" render={() => <div>Three</div>}/>
 				</div>
-				
+
 			</div>
 		);
 	}
@@ -45,10 +45,7 @@ class App extends Component {
 	}
 
 	handleButtonClick() {
-		this.props.actions.navigate({
-			location: { pathname: '/three' },
-			action: 'PUSH'
-		});
+		this.props.actions.navigate('/three');
 	}
 }
 
@@ -60,9 +57,10 @@ App.defaultProps = {
 };
 
 App.propTypes = {
-	items: React.PropTypes.array,
-	value: React.PropTypes.string,
-	actions: React.PropTypes.objectOf(React.PropTypes.func)
+	items: PropTypes.array,
+	value: PropTypes.string,
+	actions: PropTypes.objectOf(PropTypes.func),
+	dispatch: PropTypes.func
 };
 
 export default App;

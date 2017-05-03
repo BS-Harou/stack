@@ -6,6 +6,12 @@ import { createLogger } from 'redux-logger';
 import rootReducer from './root-reducer';
 import mainSaga from './main-saga';
 
+import createHistory from 'history/createBrowserHistory';
+import { routerMiddleware } from 'react-router-redux';
+
+export const history = createHistory();
+const routerEnhancer = routerMiddleware(history);
+
 
 const logger = createLogger();
 const sagaMiddleware = createSagaMiddleware();
@@ -15,15 +21,13 @@ if (__DEV__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
 	composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 }
 
-const store = createStore(
+export const store = createStore(
 	rootReducer,
 	composeEnhancers(
-		applyMiddleware(thunk, promise, sagaMiddleware, logger)
+		applyMiddleware(thunk, promise, sagaMiddleware, routerEnhancer, logger)
 	)
 );
 
 window.store = store;
 
 sagaMiddleware.run(mainSaga);
-
-export default store;

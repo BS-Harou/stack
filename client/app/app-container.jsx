@@ -1,7 +1,6 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import appActionCreators from './app-action-creators';
-import routerActionCreators from '../router/router-action-creators';
 import {getItems, getValue} from './app-selectors';
 import {createStructuredSelector} from 'reselect';
 import App from './app-component';
@@ -14,7 +13,7 @@ const mapStateToProps = function() {
 };
 
 const mapDispatchToProps =function(dispatch) {
-	const actionCreators = Object.assign({}, appActionCreators, routerActionCreators);
+	const actionCreators = Object.assign({}, appActionCreators);
 	return {
 		actions: bindActionCreators(actionCreators, dispatch)
 	};

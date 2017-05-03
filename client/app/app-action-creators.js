@@ -1,4 +1,5 @@
 import {SET_ITEMS, SET_VALUE} from './app-action-types';
+import {push} from 'react-router-redux';
 
 export function setItems(val) {
 	return {
@@ -14,7 +15,12 @@ export function setValue(val) {
 	};
 }
 
+export function navigate(val) {
+	return push(val);
+}
+
 export default {
 	setItems,
-	setValue
+	setValue,
+	navigate
 };

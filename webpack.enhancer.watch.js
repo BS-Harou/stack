@@ -5,7 +5,7 @@ function findServer(entries) {
 	for (var i in entries) {
 		if (entries[i].match(/webpack-dev-server\/client/)) return i;
 	}
-	throw new Error("Watch can't be used without dev server");
+	throw new Error('Watch can\'t be used without dev server');
 }
 
 module.exports = function(config) {

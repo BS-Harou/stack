@@ -1,17 +1,10 @@
-- load bootstrap (trough express server? what about webpack-dev?) https://github.com/shakacode/bootstrap-loader#bootstrap-4-only
-	Thought 1.: we will probably want to load bootstrap from cdn in production
-	Thought 2.: for dev (and prod backup) we will want to exlucde node_moduels from cssloader and load bootstrap as it is using entrypoint (or import in some root css file, or maybe in each file using bootstrap class?)
-	Thought 3.: Using extracttextplugin seems like a rape of webpack to me, perhaps we should just use gulp to copy the css files to dist?
-- redux controlledrouter - waiting for rr4 release
 - how to load sagas?
 - express server with hot reload and loading app for any path
 - load all css preprocessors, perhaps even cssnext
 - css sourcemaps
 - wtf is extracttextplugin and why is everyone using it for css
-	- it owuld seem it is used to seperate css into its own file/bundle, rather theni nlining it into js
+	- it would seem it is used to seperate css into its own file/bundle, rather then inlining it into js
 - autoprefixer (needed? read up on postcss)
 - dotenv lib
 - load larger libraries from cdn in production
-- I think there was some lodash thing to important only whats needed
-- Split/rector webpack config based on: NODE_ENV, run_dev_server, watch
 - Consider using flow (babel-eslint might be need with that)
