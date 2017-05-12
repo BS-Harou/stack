@@ -12,7 +12,7 @@ const mapStateToProps = function() {
 	});
 };
 
-const mapDispatchToProps =function(dispatch) {
+const mapDispatchToProps = function(dispatch) {
 	const actionCreators = Object.assign({}, appActionCreators);
 	return {
 		actions: bindActionCreators(actionCreators, dispatch)

@@ -8,3 +8,4 @@
 - dotenv lib
 - load larger libraries from cdn in production
 - Consider using flow (babel-eslint might be need with that)
+- prod eslint (disable console.logs, debuggers, etc.)

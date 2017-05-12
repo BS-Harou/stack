@@ -3,13 +3,9 @@
 * Changelogs http://blog.getbootstrap.com/
 * Some unexpected changes, mention in one of the changelogs, can't find it now
 
-### react-router-addons-controlled
-* No longer exists
-* How to support redux instead?
-
 ### redux
 * mapStateToProps gets called only when state is changed
-	* ake sure Object.assign's first parameter is new object
+	* make sure Object.assign's first parameter is new object
 
 ### redux-saga
 * https://redux-saga.github.io/redux-saga/index.html
@@ -17,9 +13,6 @@
 
 ### reselect
 * Watch out for using same selector for multiple component instances
-
-### socket.io-client
-* Snyk vulnarability
 
 ### babel
 * https://babeljs.io/

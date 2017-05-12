@@ -1,5 +1,6 @@
 module.exports = {
 	"env": {
+		"node": true,
 		"browser": true,
 		"commonjs": true,
 		"es6": true
@@ -39,6 +40,7 @@ module.exports = {
 			"always"
 		],
 		"no-debugger": [0],
-		"no-console": [0]
+		"no-console": [0],
+		"react/no-string-refs": [0]
 	}
 };

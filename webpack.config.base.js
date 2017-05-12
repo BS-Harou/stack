@@ -17,10 +17,9 @@ Object.assign(env, {
 
 module.exports = {
 	target: 'web',
-
 	resolve: {
 		modules: [
-			path.join(__dirname, "client"),
+			path.join(__dirname, 'client'),
 			'node_modules'
 		],
 		extensions: ['.js', '.jsx', '.json']
@@ -58,8 +57,8 @@ module.exports = {
 			//{test: /\.scss$/, loader: 'style!css!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded'}
 			{
 				test: /(\.js|\.jsx)$/,
-				enforce: "pre",
-				include: path.join(__dirname, "client"),
+				enforce: 'pre',
+				include: path.join(__dirname, 'client'),
 				loader: 'eslint-loader',
 				options: {
 					configFile: '.eslintrc.js'
@@ -72,7 +71,7 @@ module.exports = {
 			},
 			{
 				test: /(\.css)$/,
-				include: path.join(__dirname, "client"),
+				include: path.join(__dirname, 'client'),
 				use: [
 					'style-loader',
 					{
@@ -92,7 +91,7 @@ module.exports = {
 			},
 			{
 				test: /(\.css)$/,
-				include: path.join(__dirname, "node_modules/bootstrap"),
+				include: path.join(__dirname, 'node_modules/bootstrap'),
 				use: [
 					'style-loader', 'css-loader'
 				]

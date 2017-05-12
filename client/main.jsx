@@ -29,5 +29,5 @@ store.subscribe(function() {
 
 // Hot Module Replacement API
 if (module.hot) {
-	module.hot.accept('./router/router-container', renderApp);
+	module.hot.accept('./app/app-container', renderApp);
 }
