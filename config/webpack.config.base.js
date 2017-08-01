@@ -1,6 +1,10 @@
+var fs = require('fs');
 var path = require('path');
 var webpack = require('webpack');
 var LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+var cssNext = require('postcss-cssnext');
+var cssReporter = require('postcss-reporter')();
+var StyleLintPlugin = require('stylelint-webpack-plugin');
 
 var NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -15,17 +19,20 @@ Object.assign(env, {
 	build: (env.production || env.staging)
 });
 
+const appDirectory = fs.realpathSync(process.cwd());
+// const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+
 module.exports = {
 	target: 'web',
 	resolve: {
 		modules: [
-			path.join(__dirname, 'client'),
+			path.join(appDirectory, 'client'),
 			'node_modules'
 		],
 		extensions: ['.js', '.jsx', '.json']
 	},
 
-	context: __dirname,
+	context: appDirectory,
 
 	entry: [
 		'babel-polyfill',
@@ -33,7 +40,7 @@ module.exports = {
 	],
 
 	output: {
-		path: path.join(__dirname, 'dist'),
+		path: path.join(appDirectory, 'dist'),
 		filename: 'main.js',
 		publicPath: '/static/',
 		pathinfo: false
@@ -49,6 +56,9 @@ module.exports = {
 		new LodashModuleReplacementPlugin({
 			'collections': true,
 			'shorthands': true
+		}),
+		new StyleLintPlugin({
+			files: ['./client/**/*.css']
 		})
 	],
 
@@ -58,7 +68,7 @@ module.exports = {
 			{
 				test: /(\.js|\.jsx)$/,
 				enforce: 'pre',
-				include: path.join(__dirname, 'client'),
+				include: path.join(appDirectory, 'client'),
 				loader: 'eslint-loader',
 				options: {
 					configFile: '.eslintrc.js'
@@ -67,33 +77,37 @@ module.exports = {
 			{
 				test: /(\.js|\.jsx)$/,
 				loader: 'babel-loader',
-				include: path.join(__dirname, 'client')
+				include: path.join(appDirectory, 'client')
 			},
 			{
 				test: /(\.css)$/,
-				include: path.join(__dirname, 'client'),
+				include: path.join(appDirectory, 'client'),
 				use: [
-					'style-loader',
+					{
+						loader: 'style-loader',
+						options: {
+							sourceMap: !env.production
+						}
+					},
 					{
 						loader: 'css-loader',
 						options: {
 							modules: true,
-							localIdentName: '[name]--[local]--[hash:base64:8]'
+							importLoaders: 1,
+							localIdentName: '[name]--[local]--[hash:base64:8]',
+							sourceMap: !env.production
 						}
 					},
 					{
 						loader: 'postcss-loader',
 						options: {
-							plugins: []
+							plugins: [
+								cssNext,
+								cssReporter
+							],
+							sourceMap: !env.production
 						}
 					}
-				]
-			},
-			{
-				test: /(\.css)$/,
-				include: path.join(__dirname, 'node_modules/bootstrap'),
-				use: [
-					'style-loader', 'css-loader'
 				]
 			}
 		],

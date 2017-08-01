@@ -1,13 +1,16 @@
-var express = require('express');
-var app = express();
-var path = require('path');
-var webpack = require('webpack');
-var webpackDevMiddleware = require('webpack-dev-middleware');
-var webpackHotMiddleware = require('webpack-hot-middleware');
-var webpackConfig = require('../webpack.config.js');
-var watchEnhancer = require('../webpack.enhancer.watch.js');
-webpackConfig = watchEnhancer(webpackConfig);
-var compiler = webpack(webpackConfig);
+const express = require('express');
+const app = express();
+const path = require('path');
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+let webpackConfig = require('../config/webpack.config.js');
+const argv = require('yargs').argv;
+if (argv.watch) {
+	const watchEnhancer = require('../config/webpack.enhancer.watch.js');
+	webpackConfig = watchEnhancer(webpackConfig);
+}
+const compiler = webpack(webpackConfig);
 
 app.use(webpackDevMiddleware(compiler, {
 	hot: true,
@@ -26,7 +29,7 @@ app.use(express.static('public'));
 app.use(express.static('dist'));
 
 app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname, 'public/index.html'));
+	res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 app.listen(8080, function () {

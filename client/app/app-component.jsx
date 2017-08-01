@@ -18,7 +18,6 @@ class App extends Component {
 				<div>Val is: <span>{this.props.value}</span></div>
 				<div>{list}</div>
 				<input name="test" onChange={this.handleChange.bind(this)} ref="test" />
-
 				<div>Menu:</div>
 				<ul className={appStyle.test}>
 					<li><Link to="/one">One</Link></li>

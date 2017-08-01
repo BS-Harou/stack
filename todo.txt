@@ -1,11 +1,19 @@
+- express: better url handling
+
 - how to load sagas?
-- express server with hot reload and loading app for any path
+
 - load all css preprocessors, perhaps even cssnext
 - css sourcemaps
 - wtf is extracttextplugin and why is everyone using it for css
 	- it would seem it is used to seperate css into its own file/bundle, rather then inlining it into js
 - autoprefixer (needed? read up on postcss)
+
 - dotenv lib
 - load larger libraries from cdn in production
-- Consider using flow (babel-eslint might be need with that)
-- prod eslint (disable console.logs, debuggers, etc.)
+- Hide most stuff int folders
+
+- Production build
+	- prod eslint (disable console.logs, debuggers, etc.)
+	- snyk test
+	- uglify
+	- Nodemon?
