@@ -6,6 +6,8 @@ import {createStructuredSelector} from 'reselect';
 import App from './app-component';
 
 const mapStateToProps = function() {
+	var a = { b: {} };
+	console.log(a?.b);
 	return createStructuredSelector({
 		value: getValue,
 		items: getItems

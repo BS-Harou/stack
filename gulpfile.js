@@ -7,7 +7,7 @@ const webpackConfig = require('./config/webpack.config.js');
 const spawnSync = require('child_process').spawnSync;
 
 
-gulp.task('default', ['webpack']);
+gulp.task('default', ['run']);
 
 gulp.task('clean', function() {
 	return del('dist/*');

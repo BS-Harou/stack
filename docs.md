@@ -48,10 +48,5 @@
 ### webpack
 * Webpack 2.2 is fully out, check out the December 2016+ migration guides
 
-### webpack-dashboard
-* Dashboard will be empty when wrong webpack config is provided
-* It is opening node terminal on windows - annoying
-* Include it as part of gulp dev
-
 ### webpack-dev-server
 * Configuring everything for webpack-dev-server is annoying, but suppposedly it is possible to load it in custom express server instead

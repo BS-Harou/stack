@@ -6,9 +6,9 @@ module.exports = {
 		"es6": true
 	},
 	"extends": ["eslint:recommended", "plugin:react/recommended"],
+	"parser": "babel-eslint",
 	"parserOptions": {
 		"ecmaFeatures": {
-			"experimentalObjectRestSpread": true,
 			"jsx": true
 		},
 		"sourceType": "module"
@@ -42,8 +42,9 @@ module.exports = {
 			"error",
 			"always"
 		],
-		"no-debugger": [0],
-		"no-console": [0],
-		"react/no-string-refs": [0]
+		"no-debugger": 0,
+		"no-console": 0,
+		"react/no-string-refs": 0,
+		"strict": 0
 	}
 };

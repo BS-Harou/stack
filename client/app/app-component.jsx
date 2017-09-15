@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 // <Forms.Text ident="text1" />
 
 class App extends Component {
+
 	render() {
 		const list = this.props.items.map((item) => <div key={item.value}>{item.value}</div>);
 		return (

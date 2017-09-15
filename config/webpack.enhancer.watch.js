@@ -1,5 +1,4 @@
 var webpack = require('webpack');
-var DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = function(config) {
 
@@ -17,7 +16,6 @@ module.exports = function(config) {
 
 	config.plugins = [
 		...config.plugins,
-		new DashboardPlugin(),
 		new webpack.HotModuleReplacementPlugin()
 	];
 
