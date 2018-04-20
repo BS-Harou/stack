@@ -1,22 +1,26 @@
-import {SET_ITEMS, SET_VALUE} from './app-action-types';
 import {push} from 'react-router-redux';
+
+export const ACTIONS = {
+	SET_ITEMS: 'home/SET_ITEMS',
+	SET_VALUE: 'home/SET_VALUE',
+};
 
 export function setItems(val) {
 	return {
-		type: SET_ITEMS,
+		type: ACTIONS.SET_ITEMS,
 		payload: val
 	};
 }
 
 export function setValue(val) {
 	return {
-		type: SET_VALUE,
+		type: ACTIONS.SET_VALUE,
 		payload: val
 	};
 }
 
 export function navigate(val) {
-	return push(val);
+	return dispatch => dispatch(push(val));
 }
 
 export default {

@@ -1,13 +1,11 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import appActionCreators from './app-action-creators';
-import {getItems, getValue} from './app-selectors';
+import actionCreators from './home-actions';
+import {getItems, getValue} from './home-selectors';
 import {createStructuredSelector} from 'reselect';
-import App from './app-component';
+import Home from './home';
 
 const mapStateToProps = function() {
-	var a = { b: {} };
-	console.log(a?.b);
 	return createStructuredSelector({
 		value: getValue,
 		items: getItems
@@ -15,10 +13,9 @@ const mapStateToProps = function() {
 };
 
 const mapDispatchToProps = function(dispatch) {
-	const actionCreators = Object.assign({}, appActionCreators);
 	return {
 		actions: bindActionCreators(actionCreators, dispatch)
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

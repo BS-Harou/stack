@@ -1,3 +1,5 @@
+- "babel-eslint": "8.2.1", ... 8.2.2/3 has broken option-chaining
+
 - express: better url handling
 
 - how to load sagas?
@@ -19,3 +21,5 @@
 	- Nodemon?
 
 - Make a module out of the stack so it can be easily used
+
+- Use html laoder and don't load main.css in dev mode

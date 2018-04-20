@@ -23,27 +23,13 @@ module.exports = {
 		"__CURRENT_ENV__": true
 	},
 	"rules": {
-		"indent": [
-			"error",
-			"tab",
-			{
-				"MemberExpression": 0
-			}
-		],
-		"linebreak-style": [
-			"error",
-			"unix"
-		],
-		"quotes": [
-			"error",
-			"single"
-		],
-		"semi": [
-			"error",
-			"always"
-		],
+		"indent": ["error", "tab", {"MemberExpression": 0}],
+		"linebreak-style": ["error", "unix"],
+		"quotes": ["error", "single"],
+		"semi": ["error", "always"],
 		"no-debugger": 0,
 		"no-console": 0,
+		"no-unused-vars": 1,
 		"react/no-string-refs": 0,
 		"strict": 0
 	}

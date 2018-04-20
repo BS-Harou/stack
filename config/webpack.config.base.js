@@ -1,14 +1,15 @@
-var fs = require('fs');
-var path = require('path');
-var webpack = require('webpack');
-var LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-var cssNext = require('postcss-cssnext');
-var cssReporter = require('postcss-reporter')();
-var StyleLintPlugin = require('stylelint-webpack-plugin');
+const fs = require('fs');
+const path = require('path');
+const webpack = require('webpack');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const cssNext = require('postcss-cssnext');
+const cssReporter = require('postcss-reporter')();
+const StyleLintPlugin = require('stylelint-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var NODE_ENV = process.env.NODE_ENV || 'development';
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
-var env = {
+let env = {
 	production: NODE_ENV === 'production',
 	staging: NODE_ENV === 'staging',
 	test: NODE_ENV === 'test',
@@ -20,30 +21,33 @@ Object.assign(env, {
 });
 
 const appDirectory = fs.realpathSync(process.cwd());
-// const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+const SRC_DIR = path.resolve(appDirectory, 'client');
+const DIST_DIR = path.resolve(appDirectory, 'dist');
+const MODULES_DIR = path.resolve(appDirectory, 'node_modules');
+
+const VendorCSSPlugin = new ExtractTextPlugin('vendor.css');
+const MainCSSPlugin = new ExtractTextPlugin('main.css');
 
 module.exports = {
 	target: 'web',
 	resolve: {
-		modules: [
-			path.join(appDirectory, 'client'),
-			'node_modules'
-		],
+		modules: [SRC_DIR, 'node_modules'],
 		extensions: ['.js', '.jsx', '.json']
 	},
 
 	context: appDirectory,
 
-	entry: [
-		'babel-polyfill',
-		'./client/main.jsx'
-	],
+	entry: {
+		main: [
+			'@babel/polyfill',
+			path.resolve(SRC_DIR, 'main.jsx'),
+		]
+	},
 
 	output: {
-		path: path.join(appDirectory, 'dist'),
-		filename: 'main.js',
-		publicPath: '/static/',
-		pathinfo: false
+		path: DIST_DIR,
+		filename: '[name].js',
+		publicPath: '/static/'
 	},
 
 	plugins: [
@@ -59,8 +63,24 @@ module.exports = {
 		}),
 		new StyleLintPlugin({
 			files: ['./client/**/*.css']
-		})
+		}),
+		VendorCSSPlugin,
+		MainCSSPlugin
 	],
+
+	optimization: {
+		runtimeChunk: 'single',
+		splitChunks: {
+			cacheGroups: {
+				default: false,
+				vendor: {
+					test: /[\\/]node_modules[\\/]/,
+					name: 'vendor',
+					chunks: 'initial'
+				}
+			}
+		}
+	},
 
 	module: {
 		rules: [
@@ -68,8 +88,9 @@ module.exports = {
 			{
 				test: /(\.js|\.jsx)$/,
 				enforce: 'pre',
-				include: path.join(appDirectory, 'client'),
+				include: SRC_DIR,
 				loader: 'eslint-loader',
+				type: 'javascript/auto',
 				options: {
 					configFile: '.eslintrc.js'
 				}
@@ -77,11 +98,23 @@ module.exports = {
 			{
 				test: /(\.js|\.jsx)$/,
 				loader: 'babel-loader',
-				include: path.join(appDirectory, 'client')
+				type: 'javascript/auto',
+				options: {
+					cacheDirectory: true,
+				},
+				include: SRC_DIR
 			},
 			{
 				test: /(\.css)$/,
-				include: path.join(appDirectory, 'client'),
+				include: MODULES_DIR,
+				use: VendorCSSPlugin.extract({
+					fallback: 'style-loader',
+					use: 'css-loader'
+				})
+			},
+			{
+				test: /(\.css)$/,
+				include: SRC_DIR,
 				use: [
 					{
 						loader: 'style-loader',

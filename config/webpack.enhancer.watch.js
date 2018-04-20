@@ -1,11 +1,12 @@
+// TODO: webpack merge plugin ??
+
 var webpack = require('webpack');
 
 module.exports = function(config) {
 
-	config.entry = [
-		'react-hot-loader/patch',
+	config.entry.main = [
 		'webpack-hot-middleware/client',
-		...config.entry
+		...config.entry.main
 	];
 
 	config.watch = true;

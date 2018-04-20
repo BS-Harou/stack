@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux';
-import appReducer from './app/app-reducer';
+import home from 'sections/home/home-reducer';
 import formsReducer from './forms/forms-reducer';
 import { routerReducer } from 'react-router-redux';
 
-
 export default combineReducers({
-	app: appReducer,
+	sections: combineReducers({
+		home,
+	}),
 	router: routerReducer,
 	forms: formsReducer
 });

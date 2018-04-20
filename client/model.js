@@ -1,10 +1,11 @@
+// TODO: move to 'boot' dir tree
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import promise from 'redux-promise';
 import createSagaMiddleware from 'redux-saga';
 import { createLogger } from 'redux-logger';
 import rootReducer from './root-reducer';
-import mainSaga from './main-saga';
+import rootSaga from './root-saga';
 
 import createHistory from 'history/createBrowserHistory';
 import { routerMiddleware } from 'react-router-redux';
@@ -30,4 +31,4 @@ export const store = createStore(
 
 window.store = store;
 
-sagaMiddleware.run(mainSaga);
+sagaMiddleware.run(rootSaga);

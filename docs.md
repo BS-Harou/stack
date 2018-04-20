@@ -50,3 +50,6 @@
 
 ### webpack-dev-server
 * Configuring everything for webpack-dev-server is annoying, but suppposedly it is possible to load it in custom express server instead
+
+### extract-text-webpack-plugin
+* Use extract-text-webpack-plugin on our css only in prod. mode to make HMR in dev mode work
