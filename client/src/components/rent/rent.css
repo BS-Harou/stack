@@ -1,0 +1,54 @@
+.lodger-list {
+	display: flex;
+	width: 650px;
+	flex-flow: row wrap;
+}
+
+.lodger {
+	position: relative;
+	height: 100px;
+	display: flex;
+	flex-flow: row nowrap;
+	width: 300px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	outline: 1px dashed #eaeaea;
+}
+
+.picture {
+	flex: 0 0 100px;
+	overflow: hidden;
+}
+
+.frame {
+	pointer-events: none;
+	transform: translateZ(0);
+	position: absolute;
+	filter: drop-shadow(1px 2px 3px #444);
+	top: 0;
+	left: 0;
+}
+
+.avatar {
+	transition: 0.5s transform ease-out;
+	transform: scale(1, 1);
+	filter: grayscale(100%);
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+
+.avatar:hover {
+	transform: scale(1.23, 1.23);
+}
+
+.info {
+	flex: 1 1 auto;
+	padding: 0 5px;
+	color: #333;
+	font-size: 14px;
+}
+
+.name {
+	font-weight: bold;
+}

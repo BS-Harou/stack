@@ -13,6 +13,7 @@
 ### redux-saga
 * https://redux-saga.github.io/redux-saga/index.html
 * Main saga is no longer passed while applying middleware, but after using sagaMiddleware.run(mainSaga);
+* Loading sagas: Have root saga and laod individual sagas from each module - same as reducers.
 
 ### reselect
 * Watch out for using same selector for multiple component instances

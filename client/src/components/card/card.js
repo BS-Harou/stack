@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import css from './card.css';
 import PropTypes from 'prop-types';
 
-class App extends Component {
+class Card extends Component {
 	static defaultProps = {
 		show: false,
 		title: '',
@@ -38,4 +38,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default Card;

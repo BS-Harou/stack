@@ -11,25 +11,36 @@ if (argv.watch) {
 	webpackConfig = watchEnhancer(webpackConfig);
 }
 const compiler = webpack(webpackConfig);
-
-app.use(webpackDevMiddleware(compiler, {
+const middleware = webpackDevMiddleware(compiler, {
 	hot: true,
 	port: 8080,
 	stats: {
-		colors: true
+		all: false,
+		colors: true,
+		modules: false,
+		maxModules: 0,
+		errors: true,
+		warnings: true
 	},
 	index: 'index.html',
 	publicPath: webpackConfig.output.publicPath,
-	watchContentBase: true
-}));
+	watchContentBase: true,
+});
+
+app.use(middleware);
 
 app.use(webpackHotMiddleware(compiler));
 
-app.use(express.static('public'));
-// app.use(express.static('dist'));
-
-app.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname, '../public/index.html'));
+app.get('*', (req, res, next) => {
+	const filename = path.join(compiler.outputPath,'index.html');
+	middleware.waitUntilValid(() => {
+		compiler.outputFileSystem.readFile(filename, function(err, result) {
+			if (err) return next(err);
+			res.set('content-type','text/html');
+			res.send(result);
+			res.end();
+		});
+	});
 });
 
 app.listen(8080, function () {

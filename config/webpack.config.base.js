@@ -6,6 +6,7 @@ const cssNext = require('postcss-cssnext');
 const cssReporter = require('postcss-reporter')();
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -21,7 +22,8 @@ Object.assign(env, {
 });
 
 const appDirectory = fs.realpathSync(process.cwd());
-const SRC_DIR = path.resolve(appDirectory, 'client');
+const SRC_DIR = path.resolve(appDirectory, 'client/src');
+const ASSETS_DIR = path.resolve(appDirectory, 'client/assets');
 const DIST_DIR = path.resolve(appDirectory, 'dist');
 const MODULES_DIR = path.resolve(appDirectory, 'node_modules');
 
@@ -47,7 +49,7 @@ module.exports = {
 	output: {
 		path: DIST_DIR,
 		filename: '[name].js',
-		publicPath: '/static/'
+		publicPath: '/'
 	},
 
 	plugins: [
@@ -63,6 +65,10 @@ module.exports = {
 		}),
 		new StyleLintPlugin({
 			files: ['./client/**/*.css']
+		}),
+		new HtmlWebpackPlugin({
+			title: 'Nájem',
+			favicon: path.resolve(ASSETS_DIR, 'favicon.png')
 		}),
 		VendorCSSPlugin,
 		MainCSSPlugin
@@ -109,7 +115,10 @@ module.exports = {
 				include: MODULES_DIR,
 				use: VendorCSSPlugin.extract({
 					fallback: 'style-loader',
-					use: 'css-loader'
+					use: {
+						loader: 'css-loader',
+						options: {minimize: env.production}
+					},
 				})
 			},
 			{
@@ -126,9 +135,11 @@ module.exports = {
 						loader: 'css-loader',
 						options: {
 							modules: true,
+							camelCase: true,
 							importLoaders: 1,
 							localIdentName: '[name]--[local]--[hash:base64:8]',
-							sourceMap: !env.production
+							sourceMap: !env.production,
+							minimize: env.production
 						}
 					},
 					{

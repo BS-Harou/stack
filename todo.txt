@@ -1,18 +1,9 @@
 - "babel-eslint": "8.2.1", ... 8.2.2/3 has broken option-chaining
 
-- express: better url handling
+- express: better url handling (react-router-config)
 
-- how to load sagas?
-
-- load all css preprocessors, perhaps even cssnext
-- css sourcemaps
-- wtf is extracttextplugin and why is everyone using it for css
-	- it would seem it is used to seperate css into its own file/bundle, rather then inlining it into js
 - autoprefixer (needed? read up on postcss)
-
 - dotenv lib
-- load larger libraries from cdn in production
-- Hide most stuff int folders
 
 - Production build
 	- prod eslint (disable console.logs, debuggers, etc.)
@@ -22,4 +13,4 @@
 
 - Make a module out of the stack so it can be easily used
 
-- Use html laoder and don't load main.css in dev mode
+- Fix menu collpase without jquery
