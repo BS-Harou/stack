@@ -1,7 +1,21 @@
-.lodger-list {
+.rent {
 	display: flex;
+	align-items: stretch;
+}
+
+.rent-detail {
+	flex: 0 1 auto;
+	width: 500px;
+	background: #f1f2f3;
+	border-right: 1px solid #ccc;
+}
+
+.lodger-list {
+	flex: 0 1 auto;
 	width: 650px;
-	flex-flow: row wrap;
+	padding: 20px;
+	background: #fafbfc;
+	border-right: 1px solid #ccc;
 }
 
 .lodger {

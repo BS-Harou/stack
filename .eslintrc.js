@@ -20,7 +20,9 @@ module.exports = {
 		"__DEV__": true,
 		"__STAGING__": true,
 		"__PRODUCTION__": true,
-		"__CURRENT_ENV__": true
+		"__CURRENT_ENV__": true,
+		"__base": true,
+		"__server": true,
 	},
 	"rules": {
 		"indent": ["error", "tab", {"MemberExpression": 0}],

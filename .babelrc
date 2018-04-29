@@ -4,7 +4,9 @@
 			"modules": false,
 			"useBuiltIns": "entry"
 		}],
-		"@babel/preset-stage-1",
+		["@babel/preset-stage-1", {
+			"decoratorsLegacy": true
+		}],
 		"@babel/preset-react"
 	],
 	"plugins": [

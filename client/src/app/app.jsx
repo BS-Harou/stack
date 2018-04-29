@@ -1,23 +1,36 @@
-import React, {StrictMode} from 'react';
+import React, {StrictMode, Fragment} from 'react';
+import Login from 'sections/login/login';
 import Home from 'sections/home/home-container';
 import Menu from 'components/menu/menu';
 import {store, history} from '../model';
 import {Provider} from 'react-redux';
 import {ConnectedRouter} from 'react-router-redux';
 import {hot} from 'react-hot-loader';
+import {Route, Switch} from 'react-router-dom';
 import './app.css';
+
+const LOGGED_IN = true;
+
+debugger;
 
 // TODO ErrorBoundary ??
 const App = () => (
 	<StrictMode>
 		<Provider store={store}>
 			<ConnectedRouter history={history}>
-				<div>
-					<Menu />
-					<main>
-						<Home />
-					</main>
-				</div>
+				<Fragment>
+					{LOGGED_IN && (
+						<div className='logged-in'>
+							<Menu />
+							<main>
+								<Switch>
+									<Route path="/home" component={Home}/>
+									<Route component={Login}/>
+								</Switch>
+							</main>
+						</div>
+					)}
+				</Fragment>
 			</ConnectedRouter>
 		</Provider>
 	</StrictMode>

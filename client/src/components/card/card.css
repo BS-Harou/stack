@@ -1,7 +1,18 @@
+.card {
+	border-radius: 0 !important;
+	border: none;
+	border-bottom: 1px solid #979899;
+}
+
 .header {
 	cursor: pointer;
+	background: #212529;
+	color: #eaebec;
+	border-radius: 0 !important;
+	border: none;
 }
 
 .body {
-	padding: 20px;
+	padding: 0;
+	border: none;
 }

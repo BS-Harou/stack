@@ -28,7 +28,7 @@ class Card extends Component {
 		const {title, children} = this.props;
 		const {show} = this.state;
 		return (
-			<div className="card">
+			<div className={`card ${css.card}`}>
 				<div className={`card-header ${css.header}`} onClick={this.toggleShow} style={{position: 'sticky', top: 0}}>{title}</div>
 				<div className={`collapse ${css.body}` + (show ? ' show' : '')}>
 					{children}

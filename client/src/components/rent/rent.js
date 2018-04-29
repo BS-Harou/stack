@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 // import PropTypes from 'prop-types';
 import RentLodger from './rent-lodger';
 import RentDetail from './rent-detail';
@@ -27,22 +27,22 @@ const MOCK_LODGERS = [
 	},
 ];
 
-class Rent extends Component {
+class Rent extends PureComponent {
 	static propTypes = {};
 
 	static defaultProps = {};
 
 	render() {
 		const lodgers = MOCK_LODGERS.map((lodger, i) => (
-			<RentLodger key={i} {...lodger} />
+			<div key={i} className='col-sm-6'>
+				<RentLodger {...lodger} />
+			</div>
 		));
 		return (
-			<div className="container-fluid">
-				<div className="row">
-					<div className="col-sm">
-						<RentDetail />
-					</div>
-					<div className={'col-sm ' + css.lodgerList}>
+			<div className={css.rent}>
+				<RentDetail />
+				<div className={css.lodgerList}>
+					<div className="row">
 						{lodgers}
 					</div>
 				</div>

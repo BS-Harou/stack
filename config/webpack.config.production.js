@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const config = require('./webpack.config.base.js');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -9,14 +8,9 @@ config.bail = true;
 config.profile = false;
 config.mode = 'production';
 
-config.output.filename = '[name].[hash].min.js';
+config.output.filename = 'js/[name].[hash].min.js';
 
 config.plugins = config.plugins.concat([
-	new webpack.DefinePlugin({
-		'process.env': {
-			NODE_ENV: '"production"'
-		}
-	}),
 	new CleanWebpackPlugin(['dist'], {root: config.context}),
 	MainCSSPlugin
 ]);

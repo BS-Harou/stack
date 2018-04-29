@@ -1,48 +1,30 @@
 const express = require('express');
-const app = express();
 const path = require('path');
-const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-let webpackConfig = require('../config/webpack.config.js');
-const argv = require('yargs').argv;
-if (argv.watch) {
-	const watchEnhancer = require('../config/webpack.enhancer.watch.js');
-	webpackConfig = watchEnhancer(webpackConfig);
+const https = require('https');
+const fs = require('fs');
+const yaml = require('js-yaml');
+
+const setupProduction = require('./setup-production');
+const setupDevelopment = require('./setup-development');
+
+
+global.__server = __dirname;
+global.__base = path.resolve(__server, '..');
+const settingsPath = path.join(__server, 'settings.yaml');
+const settings = yaml.safeLoad(fs.readFileSync(settingsPath, 'utf8'));
+const certOptions = {
+	key: fs.readFileSync(path.resolve(__server, 'cert/server.key')),
+	cert: fs.readFileSync(path.resolve(__server, 'cert/server.crt')),
+};
+const app = express();
+
+if (process.env.NODE_ENV === 'production') {
+	setupProduction(app, settings);
+} else {
+	setupDevelopment(app, settings);
 }
-const compiler = webpack(webpackConfig);
-const middleware = webpackDevMiddleware(compiler, {
-	hot: true,
-	port: 8080,
-	stats: {
-		all: false,
-		colors: true,
-		modules: false,
-		maxModules: 0,
-		errors: true,
-		warnings: true
-	},
-	index: 'index.html',
-	publicPath: webpackConfig.output.publicPath,
-	watchContentBase: true,
-});
 
-app.use(middleware);
-
-app.use(webpackHotMiddleware(compiler));
-
-app.get('*', (req, res, next) => {
-	const filename = path.join(compiler.outputPath,'index.html');
-	middleware.waitUntilValid(() => {
-		compiler.outputFileSystem.readFile(filename, function(err, result) {
-			if (err) return next(err);
-			res.set('content-type','text/html');
-			res.send(result);
-			res.end();
-		});
-	});
-});
-
-app.listen(8080, function () {
+const server = https.createServer(certOptions, app);
+server.listen(8080, function () {
 	console.log('Example app listening on port 8080!');
 });

@@ -4,3 +4,4 @@ node_modules/
 npm_debug.log
 .vscode/
 .dev/
+server/settings.yaml

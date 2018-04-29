@@ -1,0 +1,30 @@
+.login {
+	height: 100vh;
+	background: url('brushed_@2X.png') repeat;
+}
+
+.login-form {
+	background: rgba(255, 255, 255, 0.5);
+	padding: 2rem;
+	width: 400px;
+	border-top: 3px solid #d1d2d9;
+	text-align: center;
+}
+
+.login-form img {
+	margin: 0 auto;
+	display: block;
+	margin-bottom: 1rem;
+}
+
+@media (max-width: 450px) {
+	.login {
+		display: block;
+		height: 100%;
+	}
+
+	.login-form {
+		width: 100%;
+		height: 100%;
+	}
+}

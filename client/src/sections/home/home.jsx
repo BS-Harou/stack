@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 // import {Link, Route} from 'react-router-dom';
 // import css from './home.css';
 // import PropTypes from 'prop-types';
@@ -12,7 +12,7 @@ const MOCK = [
 	{month: 'Leden'},
 ];
 
-class Home extends Component {
+class Home extends PureComponent {
 	static defaultProps = {};
 
 	static propTypes = {};

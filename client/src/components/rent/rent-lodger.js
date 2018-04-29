@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import css from './rent.css';
 
 const borderImg = 'https://media.overstockart.com/optimized/cache/data/frames/FR-6996G20X24-1000x1000.png';
 
-class RentLodger extends Component {
+class RentLodger extends PureComponent {
 	static propTypes = {
 		picture: PropTypes.string,
 		name: PropTypes.string,
