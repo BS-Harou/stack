@@ -14,3 +14,9 @@
 - Make a module out of the stack so it can be easily used
 
 - Fix menu collpase without jquery
+
+BE ________________________________
+
+- postgre users
+- routes and webdevserver
+- sync settings-template.yaml with settings.yaml

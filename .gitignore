@@ -5,3 +5,8 @@ npm_debug.log
 .vscode/
 .dev/
 server/settings.yaml
+*.crt
+*.csr
+*.cnf
+*.key
+v3.ext

@@ -6,12 +6,13 @@ const RedisStore = require('connect-redis')(session);
 const passport = require('passport');
 const helmet = require('helmet');
 const csurf = require('csurf');
-const webpackService = require('./services/webpack-service');
-const passportService = require('./services/passport-service');
+const webpackSetup = require('./setup/webpack-setup');
+const passportSetup = require('./setup/passport-setup');
 const routes = require('./routes');
+const settings = require('./settings3');
 
-module.exports = (app, settings) => {
-	passportService(settings);
+module.exports = (app) => {
+	passportSetup();
 	app.use(helmet());
 	app.use(helmet.contentSecurityPolicy({
 		directives: settings.csp,
@@ -41,5 +42,5 @@ module.exports = (app, settings) => {
 		next();
 	});
 	routes(app, settings);
-	webpackService(app);
+	webpackSetup(app);
 };

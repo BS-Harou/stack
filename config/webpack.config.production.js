@@ -2,7 +2,7 @@ const config = require('./webpack.config.base.js');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const MainCSSPlugin = new ExtractTextPlugin('main.css');
+const MainCSSPlugin = new ExtractTextPlugin('css/main.css');
 
 config.bail = true;
 config.profile = false;

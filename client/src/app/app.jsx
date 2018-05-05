@@ -11,8 +11,6 @@ import './app.css';
 
 const LOGGED_IN = true;
 
-debugger;
-
 // TODO ErrorBoundary ??
 const App = () => (
 	<StrictMode>

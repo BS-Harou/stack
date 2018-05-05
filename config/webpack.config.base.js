@@ -29,7 +29,6 @@ const DIST_DIR = path.resolve(appDirectory, 'dist');
 const MODULES_DIR = path.resolve(appDirectory, 'node_modules');
 
 const VendorCSSPlugin = new ExtractTextPlugin('css/vendor.css');
-const MainCSSPlugin = new ExtractTextPlugin('css/main.css');
 
 const publicUrl = 'https://localhost:8080';
 
@@ -109,7 +108,6 @@ module.exports = {
 		}),
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 		VendorCSSPlugin,
-		MainCSSPlugin
 	],
 
 	optimization: {

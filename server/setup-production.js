@@ -9,17 +9,19 @@ const RedisStore = require('connect-redis')(session);
 const passport = require('passport');
 const helmet = require('helmet');
 const csurf = require('csurf');
-const passportService = require('./services/passport-service');
-const routes = require('./routes');
 
-module.exports = (app, settings) => {
-	passportService(settings);
+const passportSetup = require('./setup/passport-setup');
+const routes = require('./routes');
+const settings = require('./settings');
+
+module.exports = (app) => {
+	passportSetup();
 	app.use(favicon(path.join(__base, 'dist', 'favicon.png')));
 	app.use(helmet());
 	app.use(helmet.contentSecurityPolicy({
 		directives: settings.csp,
 	}));
-	app.use(logger('production'));
+	app.use(logger('tiny'));
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({extended: false}));
 	app.use(cookieParser());

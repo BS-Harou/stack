@@ -1,8 +1,10 @@
 const passport = require('passport');
 
 module.exports = (app) => {
-	app.use('/auth/facebook', passport.authenticate('facebook'));
-	app.use('/auth/facebook/callback', passport.authenticate('facebook', {
+	app.get('/auth/facebook', passport.authenticate('facebook', {
+		scope: ['email']
+	}));
+	app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 		successRedirect: '/home',
 		failureRedirect: '/',
 	}));

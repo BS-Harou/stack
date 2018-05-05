@@ -54,3 +54,11 @@
 
 ### extract-text-webpack-plugin
 * Use extract-text-webpack-plugin on our css only in prod. mode to make HMR in dev mode work
+
+### postgre
+start service: sudo service postgresql start
+db changes: sudo su - postgres
+Using v9.5, 10 throws errors on windows linux console
+
+### redis
+redis-server
